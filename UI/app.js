@@ -1,7 +1,7 @@
 
-import Question from './question.js';
-import Quiz from './quiz.js';
-import User from './user.js';
+import Question from './logic/question.js';
+import Quiz from './logic/quiz.js';
+import User from './logic/user.js';
 
 const question1 = new Question("What is the capital of France?", ["Paris", "Germany", "Berlin"], "Paris");
 console.log(question1.text); // Output: "What is the capital of France?"
