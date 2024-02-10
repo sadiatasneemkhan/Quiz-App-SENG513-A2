@@ -1,4 +1,53 @@
 /* CSS styles for your web page */
-/* .quiz-illustration {
-    background-image: url('/images/Illustration.png');
-} */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.quiz-container {
+    margin: 0; 
+    padding: 0; 
+    height: 100vh;
+    background: linear-gradient(#9F7FFF, #5a30d4eb);
+}
+
+.quiz-illustration img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.quiz-information {
+    background: #FFFF;
+    width: 327px;
+    height: 356px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 60px;
+    margin: auto;
+    margin-top: 50px;
+}
+#quiz-title {
+    text-align: center;
+    color: #280A82;
+    font-size: 18px;
+}
+#quiz-description {
+    text-align: center;
+    color: #A7A7A7;
+    font-size: 20px;
+}
+.quiz-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+.quiz-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+}
