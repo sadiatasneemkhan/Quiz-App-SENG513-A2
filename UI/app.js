@@ -10,32 +10,7 @@ const question2 = new Question("What is the largest mammal?", ["Elephant", "Blue
 console.log(question2.text); // Output: "What is the largest mammal?"
 
 const quiz = new Quiz([question1, question2]); 
-const user = new User("Asma"); 
-
-/* Dynamic Question Generator
-
-    Create a generator function to manage the flow of quiz 
-    questions (e.g., use `yield` to control presentation and
-    user input to proceed to the next question)
-*/
-
-function* dynamicGenerator(){
-
-    let id = 11;
-
-    while (true){
-
-        yield id;
-        id++
-    }
-}
-
-const generatorObject = dynamicGenerator();
-console.log(generatorObject.next());
-console.log(generatorObject.next());
-console.log(generatorObject.next());
-console.log(generatorObject.next());
-//console.log(generatorObject.throw(new Error("Error message")));
+const user = new User("Asma");
 
 /* Asynchronous Data Handling
 
