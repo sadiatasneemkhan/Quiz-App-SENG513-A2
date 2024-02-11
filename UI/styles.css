@@ -100,7 +100,8 @@ border-radius: 120px;
     top: 360px;
 }
 
-h1 {
+
+.center-content h1 {
     position: absolute;
     top: 235px;
     font-family: 'Poppins', sans-serif;
