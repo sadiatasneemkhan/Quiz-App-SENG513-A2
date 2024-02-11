@@ -160,3 +160,38 @@ border-radius: 120px;
     border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
+.bg-rect {
+    position: absolute;
+    top: 182px;
+    width: 327px;
+    height: 260px;
+    border-radius: 40px;
+    background: #FFFFFF;
+    border: 2px solid rgba(255, 255, 255, 0.2);    
+}
+
+.fg-square {
+    position: absolute;
+    top: 167px;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    background-color: #FFB184;
+}
+
+.pencil {
+    position: absolute;
+    top: 168.82px;
+}
+
+h2 {
+    position: absolute;
+    top: 295px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #280A82;  
+    text-align: center;
+    margin: 25px;
+}
+
