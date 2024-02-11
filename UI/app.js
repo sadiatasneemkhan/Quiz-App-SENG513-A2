@@ -18,9 +18,10 @@ const user = new User("Asma");
 */
 
 async function fetchData() {
-    const response = await fetch("https://opentdb.com/api.php?amount=50&category=17");
+    const response = await fetch("https://opentdb.com/api.php?amount=50&category=27");
     const data = await response.json();
     console.log(data);
 }
 
 fetchData();
+
