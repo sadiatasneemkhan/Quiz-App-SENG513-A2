@@ -52,6 +52,16 @@ body, html {
     height: 4vh;
 }
 
+.quiz-next-bottom {
+    display: flex;
+    justify-content: right; 
+}
+
+.next-img {
+    position: absolute;
+    top: 715px;
+}
+
 .cancel {
 position: absolute;
 width: 24px;
@@ -109,6 +119,8 @@ h1 {
 }
 
 .buttons-container {
+    position: absolute;
+    top: 482px;
     width: 100%;
     display: flex;
     flex-direction: column;
