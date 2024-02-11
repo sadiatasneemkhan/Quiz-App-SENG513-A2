@@ -195,3 +195,25 @@ h2 {
     margin: 25px;
 }
 
+.previous {
+    position: absolute;
+    left: 26px;
+    top: 67px;
+}
+
+.kebab-menu-button{
+    position: absolute;
+    right: 35px;
+    top: 67px;
+}
+
+.question-nbr {
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #FFFFFF; 
+    padding-top: 64px;
+}
+
