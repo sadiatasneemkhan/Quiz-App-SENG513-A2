@@ -18,10 +18,32 @@ const user = new User("Asma");
 */
 
 async function fetchData() {
-    const response = await fetch("https://opentdb.com/api.php?amount=50&category=27");
+    const response = await fetch("https://opentdb.com/api.php?amount=50&category=27&type=multiple");
     const data = await response.json();
     console.log(data);
+    return data;
 }
 
-fetchData();
+async function processData(){
+    try {
+
+        console.log("THIS STARTS");
+
+        //Store JSON Object
+        const questionData = await fetchData();
+
+        console.log(questionData.results[0].question);
+
+        console.log("THIS DONE");
+
+        document.getElementById("actual-question").innerHTML = questionData.results[0].question;
+        console.log(questionData.results[0].question);
+        
+
+    } catch (error) {
+        
+    }
+}
+
+processData();
 
