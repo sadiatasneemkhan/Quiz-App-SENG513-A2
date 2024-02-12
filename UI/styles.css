@@ -188,7 +188,7 @@ border-radius: 120px;
     top: 168.82px;
 }
 
-h2 {
+.question-txt {
     position: absolute;
     top: 295px;
     font-family: 'Poppins', sans-serif;
