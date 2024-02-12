@@ -193,10 +193,11 @@ border-radius: 120px;
     top: 295px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 20px;
     color: #280A82;  
     text-align: center;
-    margin: 25px;
+    margin: 0px 25px;
+    padding: 25px;
 }
 
 .previous {
