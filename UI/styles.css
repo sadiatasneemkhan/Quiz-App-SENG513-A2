@@ -125,7 +125,19 @@ border-radius: 120px;
 
 .buttons-container {
     position: absolute;
-    top: 402px;
+    top: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;    
+    position: absolute;
+    bottom: 60px;
+}
+
+.buttons-container_finalpage {
+    position: absolute;
+    top: 486px;
     width: 100%;
     display: flex;
     flex-direction: column;
