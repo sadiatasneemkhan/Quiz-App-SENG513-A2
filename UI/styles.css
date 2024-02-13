@@ -234,3 +234,36 @@ border-radius: 120px;
     padding-top: 24px;
 }
 
+.center-content .star {
+position: absolute;
+left: 43%;
+top: 42.5%;
+}
+
+#result h1 {
+    font-size: 107px;
+    top: 100px;
+    text-shadow: 6px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.final-score {
+position: absolute;
+top: 109px;
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 28px;
+color: #FFFFFF;
+}
+
+.overall-score {
+position: absolute;
+top: 470px;
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+font-size: 18px;
+color: #FFFFFF;
+}
+
+.buttons-container_scorepage {
+    top: 540px;
+}
