@@ -70,14 +70,6 @@ body, html {
     top: 715px;
 }
 
-.cancel {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    left: 26px;
-    top: 67px;
-}
-
 .bg-circle {
 position: absolute;
     width: 120px;
@@ -222,18 +214,6 @@ position: absolute;
     text-align: center;
     margin: 0px 25px;
     padding: 25px;
-}
-
-.previous {
-    position: absolute;
-    left: 26px;
-    top: 27px;
-}
-
-.kebab-menu-button{
-    position: absolute;
-    right: 35px;
-    top: 27px;
 }
 
 .question-nbr {
