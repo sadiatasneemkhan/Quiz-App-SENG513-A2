@@ -13,7 +13,7 @@
             
             <div id="result" class="center-content">
                 <h3 class="final-score">Final Score</h3>
-                <h1 id="final-score"> 70% </h1>
+                <h1 id="final-score">70%</h1>
                 <p id="total-score" class="overall-score">7/10 Questions</p>
                 <span class="bg-circle"></span>
                 <span class="fg-circle"></span>
@@ -30,5 +30,15 @@
     </div>
     <script type="module" src="app.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+            if (score !== null) {
+                document.getElementById('final-score').textContent = score + "%";
+                document.getElementById('total-score').textContent = score + "/10 Questions";
+            }
+        });
+    </script>
 </body>
 </html>
