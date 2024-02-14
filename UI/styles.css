@@ -153,7 +153,7 @@ position: absolute;
 .btn {
     width: 327px;
     height: 64px;
-    background-color: transparent;
+    background-color: #FF9051;;
     border: 2px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0px 16px 32px rgba(54, 16, 166, 0.4);
     border-radius: 12px;
