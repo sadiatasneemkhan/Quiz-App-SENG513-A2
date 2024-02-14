@@ -6,6 +6,9 @@ import fetchData from "./fetchData.js";
 // const
 // let shuffledQuestions, currentQuestionIndex;
 
+//global button elements
+const questionButton = document.getElementById("actual-question");
+
 class Quiz {
   constructor(questions) {
     this.questions = questions;

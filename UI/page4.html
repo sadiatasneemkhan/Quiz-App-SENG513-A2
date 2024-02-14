@@ -35,7 +35,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const score = urlParams.get('score');
             if (score !== null) {
-                document.getElementById('final-score').textContent = score + "%";
+                document.getElementById('final-score').textContent = score*10 + "%";
                 document.getElementById('total-score').textContent = score + "/10 Questions";
             }
         });

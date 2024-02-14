@@ -4,12 +4,22 @@ const quizPage = document.getElementById("actual-question");
 let totalQuestions = 10;
 let currentDifficulty = "easy";
 
+function decodeHTML(text) {
+  return text
+    .replace(/&amp;/g, "&")
+    .replace(/&#039;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\\u([\dA-Fa-f]{4})/g, (match, grp) =>
+      String.fromCharCode(parseInt(grp, 16))
+    );
+}
+
 //QUESTION CLASS
 class Question {
   constructor(question, choices, correctAnswer) {
-    this.question = question;
-    this.choices = choices;
-    this.correctAnswer = correctAnswer;
+    this.question = decodeHTML(question);
+    this.choices = choices.map((choice) => decodeHTML(choice));
+    this.correctAnswer = decodeHTML(correctAnswer);
   }
 
   isCorrectAnswer(choice) {
@@ -20,34 +30,33 @@ class Question {
 
 //QUIZ CLASS
 class Quiz {
-    constructor(questions) {
-      this.questions = questions || [];
-      this.score = 0;
-      this.questionIndex = 0;
-      this.correctStreak = 0; //to update difficulty
-    }
-  
-    getQuestion() {
-      //returns 1 question object
-      return this.questions[this.questionIndex];
-    }
-  
-    guess(answer) {
-      const currentQuestion = this.getQuestion();
-      if (currentQuestion.isCorrectAnswer(answer)) {
-        this.score++;
-        this.correctStreak++;
-      } else {
-        this.correctStreak = 0; //reset streak
-      }
-      this.questionIndex++;
-    }
-  
-    isEnded() {
-      return this.questionIndex === this.questions.length;
-    }
+  constructor(questions) {
+    this.questions = questions || [];
+    this.score = 0;
+    this.questionIndex = 0;
+    this.correctStreak = 0; //to update difficulty
   }
-  
+
+  getQuestion() {
+    //returns 1 question object
+    return this.questions[this.questionIndex];
+  }
+
+  guess(answer) {
+    const currentQuestion = this.getQuestion();
+    if (currentQuestion.isCorrectAnswer(answer)) {
+      this.score++;
+      this.correctStreak++;
+    } else {
+      this.correctStreak = 0; //reset streak
+    }
+    this.questionIndex++;
+  }
+
+  isEnded() {
+    return this.questionIndex === this.questions.length;
+  }
+}
 
 //FETCHING DATA
 async function fetchData(currentDifficulty) {
@@ -88,41 +97,41 @@ async function fetchData(currentDifficulty) {
 }
 
 function displayQuiz(quiz) {
-    if (quiz.isEnded()) {
-      // Quiz ended, navigate to score page
-      const percentage = (quiz.score / totalQuestions) * 100;
-      const score = quiz.score;
-      localStorage.setItem('quizScore', percentage);
-      window.location.href = `page4.html?score=${score}`; // Navigate to score page with score as query parameter
-    } else {
-      // Continue quiz and display questions
-      let currentQuestion = quiz.getQuestion();
-  
-      // Display question text
-      const questionElement = document.getElementById("actual-question");
-      questionElement.textContent = currentQuestion.question;
-  
-      // Clear previous answer buttons
-      const answerButtons = document.getElementById("answer-buttons");
-      answerButtons.innerHTML = "";
+  if (quiz.isEnded()) {
+    // Quiz ended, navigate to score page
+    const percentage = (quiz.score / totalQuestions) * 100;
+    const score = quiz.score;
+    localStorage.setItem("quizScore", quiz.score * 10);
+    window.location.href = `page4.html?score=${score}`; // Navigate to score page with score as query parameter
+  } else {
+    // Continue quiz and display questions
+    let currentQuestion = quiz.getQuestion();
 
-      // Update question number
-      const questionNumberElement = document.getElementById("question-number");
-      questionNumberElement.textContent = `Question ${quiz.questionIndex + 1}`; // Update question number dynamically
-  
-      // Display answer option buttons
-      currentQuestion.choices.forEach((choice, index) => {
-        const optionButton = document.createElement("button");
-        optionButton.textContent = choice;
-        optionButton.id = "option" + (index + 1);
-        optionButton.className = "btn btn-tertiary"; 
-        optionButton.addEventListener("click", () => {
-          quiz.guess(choice);
-          displayQuiz(quiz);
-        });
-        answerButtons.appendChild(optionButton);
+    // Display question text
+    const questionElement = document.getElementById("actual-question");
+    questionElement.textContent = currentQuestion.question;
+
+    // Clear previous answer buttons
+    const answerButtons = document.getElementById("answer-buttons");
+    answerButtons.innerHTML = "";
+
+    // Update question number
+    const questionNumberElement = document.getElementById("question-number");
+    questionNumberElement.textContent = `Question ${quiz.questionIndex + 1}`; // Update question number dynamically
+
+    // Display answer option buttons
+    currentQuestion.choices.forEach((choice, index) => {
+      const optionButton = document.createElement("button");
+      optionButton.textContent = choice;
+      optionButton.id = "option" + (index + 1);
+      optionButton.className = "btn btn-tertiary";
+      optionButton.addEventListener("click", () => {
+        quiz.guess(choice);
+        displayQuiz(quiz);
       });
-    }
+      answerButtons.appendChild(optionButton);
+    });
+  }
 }
 
 // Start quiz function
