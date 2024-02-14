@@ -156,7 +156,7 @@ position: absolute;
     color: #FFFFFF;
 }
 
-.btn:hover {
+.btn-tertiary:hover {
     background-color: #FF9051;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
