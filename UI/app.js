@@ -21,7 +21,7 @@ class Question {
 //QUIZ CLASS
 class Quiz {
     constructor(questions) {
-      this.questions = questions || []; /
+      this.questions = questions || [];
       this.score = 0;
       this.questionIndex = 0;
       this.correctStreak = 0; //to update difficulty
