@@ -26,29 +26,61 @@ const user = new User("Asma");
 */
 
 async function fetchData() {
-  const response = await fetch(
-    "https://opentdb.com/api.php?amount=50&category=27&type=multiple"
-  );
-  const data = await response.json();
-  console.log(data);
-  return data;
+    const maxRetries = 3; // Max number of retries
+    let retryCount = 0;
+    
+    while (retryCount < maxRetries) {
+        try {
+            const response = await fetch("https://opentdb.com/api.php?amount=50&category=27&type=multiple");
+            
+            if (response.status === 429) {
+                const retryAfter = response.headers.get('Retry-After') || 10; // Default to 10 seconds
+                console.log(`Rate limit exceeded. Retrying after ${retryAfter} seconds...`);
+                await new Promise(resolve => setTimeout(resolve, retryAfter * 1000)); // Waiting before retrying
+                retryCount++;
+            } else {
+                const data = await response.json();
+                return data;
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error; 
+        }
+    }
+    
+    throw new Error("Max retries exceeded. Unable to fetch data."); // Throw an error if max retries are reached
 }
 
-async function processData() {
-  try {
-    console.log("THIS STARTS");
 
-    //Store JSON Object
-    const questionData = await fetchData();
+async function processData(){
+    try {
+        const questionData = await fetchData();
+        console.log("Question Data:", questionData); // Loggin the fetched data
 
-    console.log(questionData.results[0].question);
+        if (questionData.results && questionData.results.length > 0) {
+            const question = questionData.results[0].question;
+            const options = questionData.results[0].incorrect_answers.concat(questionData.results[0].correct_answer);
+            
+            // Shuffle the options
+            options.sort(() => Math.random() - 0.5);
+            
+            document.getElementById("actual-question").innerHTML = question;
 
-    console.log("THIS DONE");
-
-    document.getElementById("actual-question").innerHTML =
-      questionData.results[0].question;
-    console.log(questionData.results[0].question);
-  } catch (error) {}
+            // Update option buttons in UI
+            for (let i = 0; i < options.length; i++) {
+                const optionButton = document.getElementById(`option${i + 1}`);
+                if (optionButton) {
+                    optionButton.textContent = options[i];
+                } else {
+                    console.error(`Option button with id 'option${i + 1}' not found.`);
+                }
+            }
+        } else {
+            console.error("No question data found.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 
 processData();
