@@ -120,7 +120,7 @@ position: absolute;
 
 .buttons-container {
     position: absolute;
-    top: 400px;
+    top: 410px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -181,10 +181,12 @@ position: absolute;
 }
 
 .bg-rect {
+    display: flex;
+    flex-grow: 1;
     position: absolute;
     top: 102px;
     width: 327px;
-    height: 260px;
+    height: 288px;
     border-radius: 40px;
     background: #FFFFFF;
     border: 2px solid rgba(255, 255, 255, 0.2);    

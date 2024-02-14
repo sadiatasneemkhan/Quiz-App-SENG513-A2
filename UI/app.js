@@ -28,6 +28,22 @@ class Question {
   }
 }
 
+//USER CLASS
+class User {
+  constructor(username) {
+    this.username = username;
+    this.scoreHistory = this.scoreHistory;
+  }
+
+  addScore(score) {
+    this.scoreHistory.push(score);
+  }
+
+  getScore() {
+    return this.scoreHistory;
+  }
+}
+
 //QUIZ CLASS
 class Quiz {
   constructor(questions) {
@@ -103,6 +119,8 @@ function displayQuiz(quiz) {
     const score = quiz.score;
     localStorage.setItem("quizScore", quiz.score * 10);
     window.location.href = `page4.html?score=${score}`; // Navigate to score page with score as query parameter
+    user.addScore(score);
+    console.log(user);
   } else {
     // Continue quiz and display questions
     let currentQuestion = quiz.getQuestion();
@@ -134,6 +152,7 @@ function displayQuiz(quiz) {
   }
 }
 
+const user = new User("Hadia");
 // Start quiz function
 async function startQuiz() {
   const questions = await fetchData(currentDifficulty);
