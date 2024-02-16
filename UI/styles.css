@@ -120,7 +120,7 @@ position: absolute;
 
 .buttons-container {
     position: absolute;
-    top: 400px;
+    top: 410px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ position: absolute;
 .btn {
     width: 327px;
     height: 64px;
-    background-color: transparent;
+    background-color: #FF9051;;
     border: 2px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0px 16px 32px rgba(54, 16, 166, 0.4);
     border-radius: 12px;
@@ -156,7 +156,7 @@ position: absolute;
     color: #FFFFFF;
 }
 
-.btn:hover {
+.btn-tertiary:hover {
     background-color: #FF9051;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -181,10 +181,12 @@ position: absolute;
 }
 
 .bg-rect {
+    display: flex;
+    flex-grow: 1;
     position: absolute;
     top: 102px;
     width: 327px;
-    height: 260px;
+    height: 288px;
     border-radius: 40px;
     background: #FFFFFF;
     border: 2px solid rgba(255, 255, 255, 0.2);    
