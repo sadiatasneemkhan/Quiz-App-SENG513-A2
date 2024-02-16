@@ -12,7 +12,7 @@
         <div class="quiz-navigator">
 
             <div id="question-number" class="question-nbr">Question 1</div>
-            
+            <div style="text-align: center; font-family: 'Poppins'; color: white; margin-top: 2px;"><span id="current-score">0</span>/10</div>
             <div class="center-content">
                 <div class="bg-rect"></div>
                 <div class="fg-square"></div>
@@ -40,5 +40,14 @@
     </div>
     <script type="module" src="app.js"></script>
     <script src="script.js"></script>
+    <script>
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     const score = urlParams.get('score');
+        //     if (score !== null) {
+        //         document.getElementById('score').textContent = score;
+        //     }
+        // });
+    </script>
 </body>
 </html>

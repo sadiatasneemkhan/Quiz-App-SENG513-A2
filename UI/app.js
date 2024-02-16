@@ -1,6 +1,7 @@
 //GLOBAL BUTTON CHECKERS/GETTERS
 const startButton = document.getElementById("start-quiz");
 const quizPage = document.getElementById("actual-question");
+const currentScore = document.getElementById("current-score");
 let totalQuestions = 10;
 let currentDifficulty = "easy";
 
@@ -17,6 +18,7 @@ function decodeHTML(text) {
 //QUESTION CLASS
 class Question {
   constructor(question, choices, correctAnswer) {
+    choices = choices.sort(() => Math.random() - 0.5);
     this.question = decodeHTML(question);
     this.choices = choices.map((choice) => decodeHTML(choice));
     this.correctAnswer = decodeHTML(correctAnswer);
@@ -53,6 +55,10 @@ class Quiz {
     this.correctStreak = 0; //to update difficulty
   }
 
+  getScore() {
+    return this.score;
+  }
+
   getQuestion() {
     //returns 1 question object
     return this.questions[this.questionIndex];
@@ -63,12 +69,35 @@ class Quiz {
     if (currentQuestion.isCorrectAnswer(answer)) {
       this.score++;
       this.correctStreak++;
-      console.log("Correct answer woohoo!")
+      console.log(
+        `Correct answer woohoo! Current difficulty level: ${currentDifficulty}`
+      );
     } else {
       this.correctStreak = 0; //reset streak
-      console.log("Incorrect answer, streak broken")
+      console.log(
+        `Incorrect answer, streak broken. Current difficulty level: ${currentDifficulty}`
+      );
     }
+    this.adjustDifficulty();
     this.questionIndex++;
+  }
+
+  adjustDifficulty() {
+    //increase difficulty if at least 2 questions right.
+    if (this.correctStreak >= 2 && currentDifficulty === "easy") {
+      currentDifficulty = "medium";
+      console.log("increasing difficulty to Medium");
+    } else if (this.correctStreak >= 2 && currentDifficulty === "medium") {
+      currentDifficulty = "hard";
+      console.log("increasing difficulty to Hard");
+      //decrease difficulty if streak lost
+    } else if (this.correctStreak === 0 && currentDifficulty === "hard") {
+      currentDifficulty = "medium";
+      console.log("streak lost. decreasing difficulty to Medium");
+    } else if (this.correctStreak == 0 && currentDifficulty === "medium") {
+      currentDifficulty = "easy";
+      console.log("streak lost. decreasing difficulty to Easy");
+    }
   }
 
   isEnded() {
@@ -138,6 +167,10 @@ function displayQuiz(quiz) {
     // Update question number
     const questionNumberElement = document.getElementById("question-number");
     questionNumberElement.textContent = `Question ${quiz.questionIndex + 1}`; // Update question number dynamically
+
+    if (currentScore) {
+      currentScore.innerHTML = quiz.getScore();
+    }
 
     // Display answer option buttons
     currentQuestion.choices.forEach((choice, index) => {

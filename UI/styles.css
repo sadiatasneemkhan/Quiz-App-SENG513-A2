@@ -261,3 +261,7 @@ color: #FFFFFF;
 .buttons-container_scorepage {
     top: 540px;
 }
+
+.current-score {
+    text-align: center;
+}
