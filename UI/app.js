@@ -34,7 +34,7 @@ class Question {
 class User {
   constructor(username) {
     this.username = username;
-    this.scoreHistory = this.scoreHistory;
+    this.scoreHistory = [];
   }
 
   addScore(score) {
@@ -66,7 +66,9 @@ class Quiz {
 
   guess(answer) {
     const currentQuestion = this.getQuestion();
+    let bool_val = false;
     if (currentQuestion.isCorrectAnswer(answer)) {
+      bool_val = true;
       this.score++;
       this.correctStreak++;
       console.log(
@@ -80,6 +82,7 @@ class Quiz {
     }
     this.adjustDifficulty();
     this.questionIndex++;
+    return bool_val;
   }
 
   adjustDifficulty() {
@@ -151,7 +154,7 @@ function displayQuiz(quiz) {
     localStorage.setItem("quizScore", quiz.score * 10);
     window.location.href = `page4.html?score=${score}`; // Navigate to score page with score as query parameter
     user.addScore(score);
-    console.log(user);
+    console.log(`${user.username}'s score history:`, user.getScore());
   } else {
     // Continue quiz and display questions
     let currentQuestion = quiz.getQuestion();
@@ -179,17 +182,25 @@ function displayQuiz(quiz) {
       optionButton.id = "option" + (index + 1);
       optionButton.className = "btn btn-tertiary";
       optionButton.addEventListener("click", () => {
-        quiz.guess(choice);
-        displayQuiz(quiz);
+        if (quiz.guess(choice)) {
+          console.log(true);
+          optionButton.classList.replace("btn-tertiary", "btn-success"); // If correct, turn green
+        } else {
+          optionButton.classList.replace("btn-tertiary", "btn-danger");
+        }
+
+        setTimeout(() => {
+          displayQuiz(quiz);
+        }, 2000);
       });
       answerButtons.appendChild(optionButton);
     });
   }
 }
 
-const user = new User("Hadia");
 // Start quiz function
 async function startQuiz() {
+  const user = new User("Hadia");
   const questions = await fetchData(currentDifficulty);
   const quiz = new Quiz(questions);
   displayQuiz(quiz);
