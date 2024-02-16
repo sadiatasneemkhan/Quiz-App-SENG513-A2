@@ -63,8 +63,10 @@ class Quiz {
     if (currentQuestion.isCorrectAnswer(answer)) {
       this.score++;
       this.correctStreak++;
+      console.log("Correct answer woohoo!")
     } else {
       this.correctStreak = 0; //reset streak
+      console.log("Incorrect answer, streak broken")
     }
     this.questionIndex++;
   }
