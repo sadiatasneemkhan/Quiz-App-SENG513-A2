@@ -1,4 +1,4 @@
-# SENG 513 Assignment 2: JavaScript Customizable Quiz
+# SENG 513 Assignment 2: JavaScript Custom Quiz
 [Assignment 2 Instructions](https://github.com/sadiatasneemkhan/Quiz-App-SENG513-A2/blob/main/Assignment%202%20JS%20Custom%20Quiz.pdf)
 
 ## Objective
